@@ -195,7 +195,7 @@ var clickConfirm = window.confirm('hello confirm');
 
 //11. 자바스크립트 객체 var obj = {};
 
-var num = 5;
+/*var num = 5;
 var str = 'hello';
 var bool = true; //false
 var arr = []; //내부적으로 object type으로 인식
@@ -247,11 +247,88 @@ var artList =
             content: '두번째글이에요'
         }
     ];
+*/
+
+
+//12. jQuery - hello
+/*jQuery(document).ready(function () {
+    // var theText = $('h1').text();
+    //
+    // console.log(theText);
+    //
+    // $('h1').text("너 어디가니?");
+    // $('li').first().next().text('Seoul이 젤 좋아');
+    // $('#destinations li:odd').text('seoul');
+    // $('.promo');
+
+    //#bookBigCon > ul:nth-child(1) > li:nth-child(2) > div.goods_img.bookTp > span > a > img (yes24페이지에서 따옴)
+    // $('#bookBigCon').children(ul).first().next().children('div.goods_img.bookTp').children('span').children('a').children('img')
+
+
+    //#topBooksUl_001 > li:nth-child(1) > div.goods_info > p.goods_price
+    // $('#topBooksUl_001').children(li).first().children('div.goods_info').children('p.goods_price')
 
 
 
 
 
+    $('button').on('click',function ()
+    {
+        //<p>태그 동적으로 추가하기
+        var priceTag = $('<p>From $399.99</p>');
+        //$('#destinations').children('li.vacation').append(priceTag);
+        $(this).after(priceTag);//위에와 같은 코드.
+        $(this).remove();
 
+    })
+
+    mouseenter event 발생
+   $('#destinations').on('mouseenter', 'li:nth-child(2)',  function () {
+
+       // $(this).parent('#destinations').children('li:last-child').hide();
+       $(this).parent('#destinations').children('li:last-child').fadeOut();
+   });
+
+   $('#destinations').on('mouseout', 'li:nth-child(2)',  function () {
+       $(this).parent('#destinations').children('li:last-child').fadeIn();
+   });
+
+
+ });
+ */
+
+
+/*입력된숫자로 * 계산하기.
+jQuery(document).ready(function () {
+
+
+    $('#myForm').on('keyup','input:text', function () {
+
+        var num = isNaN(+$(this).val()) ? 0 : (+$(this).val()); //+가 문자를 숫자로!!
+
+        $('#destinations').children('li:last-child').children('span').text(562 * num);
+    })
+});*/
+
+/*ajax사용하기*/
+jQuery(document).ready(function () {
+    $('#myForm').on('click', ':button' ,function () {
+        $.ajax('https://api.github.com/users/jjinha0', { //ajax는 두번째 파라미터는 객체를 받는다.
+            success: function (response) {
+
+               var login = response.login;
+               var id = response.id;
+               var loc = response.location;
+               var cAt = response.created_at;
+
+               $('#destinations').children(':first-child').children('h2').text(login);
+               $('#destinations').children(':nth-child(2)').text(id);
+               $('#destinations').children(':nth-child(3)').text(loc);
+               $('#destinations').children(':nth-child(4)').text(cAt);
+
+            }
+        })
+    })
+});
 
 
